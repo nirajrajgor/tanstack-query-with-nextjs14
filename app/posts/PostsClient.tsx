@@ -1,10 +1,5 @@
 "use client";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface Post {
   id: number;
