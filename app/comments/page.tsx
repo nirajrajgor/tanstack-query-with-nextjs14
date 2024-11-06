@@ -1,26 +1,29 @@
-interface Comment {
-  id: number;
-  name: string;
-  email: string;
-  body: string;
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import CommentsClientPage from "./CommentsClient";
+
+async function fetchComments() {
+  return fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
+    res.json()
+  );
 }
 
 export default async function CommentsPage() {
-  const comments = await fetch('https://jsonplaceholder.typicode.com/comments')
-    .then(res => res.json());
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["comments"],
+    queryFn: fetchComments,
+  });
 
   return (
-    <div className="p-4">
-      <h1>Comments</h1>
-      <ul>
-        {comments.map((comment: Comment) => (
-          <li key={comment.id} className="mb-4">
-            <h2 className="font-bold">{comment.name}</h2>
-            <p className="text-sm text-gray-600">{comment.email}</p>
-            <p>{comment.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    // Neat! Serialization is now as easy as passing props.
+    // HydrationBoundary is a Client Component, so hydration will happen there.
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CommentsClientPage />
+    </HydrationBoundary>
   );
 }
