@@ -39,7 +39,7 @@ export default function CommentsClientPage() {
 
   return (
     <div className="p-4">
-      <h1>Comments</h1>
+      <h1 className="font-bold text-4xl mb-2">Comments - Hydration example</h1>
       <ul>
         {comments.slice(0, 5).map((comment: Comment) => (
           <li key={comment.id} className="mb-4">
@@ -52,7 +52,7 @@ export default function CommentsClientPage() {
         ))}
       </ul>
       <div className="my-4 border-t border-gray-300"></div>
-      <h2>Comments Details</h2>
+      <h2 className="font-bold text-2xl mb-2">Comments Details</h2>
       <ul>
         {commentsDetails && (
           <li key={commentsDetails.id} className="mb-4">

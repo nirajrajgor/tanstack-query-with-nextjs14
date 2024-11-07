@@ -25,7 +25,7 @@ export default function PostsClientPage(props: any) {
 
   return (
     <div className="p-4">
-      <h1 className="font-bold text-4xl">Posts - Initial data example</h1>
+      <h1 className="font-bold text-4xl mb-2">Posts - Initial data example</h1>
       <ul>
         {posts.slice(0, 5).map((post: Post) => (
           <li key={post.id}>
