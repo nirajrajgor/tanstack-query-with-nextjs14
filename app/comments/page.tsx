@@ -6,9 +6,9 @@ import {
 import CommentsClientPage from "./CommentsClient";
 
 async function fetchComments() {
-  return fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
-    res.json()
-  );
+  return fetch("https://jsonplaceholder.typicode.com/comments", {
+    cache: "no-store",
+  }).then((res) => res.json());
 }
 
 export default async function CommentsPage() {
