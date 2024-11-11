@@ -1,18 +1,12 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { fetchComments } from "./page";
 
 interface Comment {
   id: number;
   name: string;
   email: string;
   body: string;
-}
-
-// This uses browser fetch api
-function fetchCommentsClient() {
-  return fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
-    res.json()
-  );
 }
 
 function fetchCommentDetailsClient() {
@@ -24,10 +18,10 @@ function fetchCommentDetailsClient() {
 
 export default function CommentsClientPage() {
   // This useQuery could just as well happen in some deeper
-  // child to <Posts>, data will be available immediately either way
+  // child to <comments>, data will be available immediately either way
   const { data: comments } = useQuery({
     queryKey: ["comments"],
-    queryFn: fetchCommentsClient,
+    queryFn: fetchComments,
   });
 
   // This query was not prefetched on the server and will not start

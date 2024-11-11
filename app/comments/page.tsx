@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import CommentsClientPage from "./CommentsClient";
 
-async function fetchComments() {
+export function fetchComments() {
   return fetch("https://jsonplaceholder.typicode.com/comments", {
     cache: "no-store",
   }).then((res) => res.json());

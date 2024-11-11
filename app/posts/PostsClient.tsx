@@ -1,15 +1,10 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { fetchPost } from "./page";
 
 interface Post {
   id: number;
   title: string;
-}
-
-function fetchPost() {
-  return fetch("https://jsonplaceholder.typicode.com/posts").then((res) =>
-    res.json()
-  );
 }
 
 export default function PostsClientPage(props: any) {
